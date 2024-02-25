@@ -6,11 +6,7 @@
     "configurations": [
         {
             "args": [
-                "--timeout",
-                "10000",
-                "--colors",
-                "${workspaceFolder}/test",
-                "--exit"
+                "-r dotenv/config"
             ],
             "internalConsoleOptions": "openOnSessionStart",
             "name": "Mocha Tests",
@@ -25,6 +21,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
+            "envFile": "${workspaceFolder}/.env",
             "skipFiles": [
                 "<node_internals>/**"
             ],
