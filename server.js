@@ -50,7 +50,7 @@ router.post('/signup', (req, res) => {
             password: req.body.password
         };
 
-        db.save(newUser); //no duplicate checking
+        db.save(newUser); //no duplicate check
         res.json({success: true, msg: 'Successfully created new user.'})
     }
 });
