@@ -3,7 +3,7 @@ CSC3916 HW2
 File: Server.js
 Description: Web API scaffolding for Movie API
  */
-require('dotenv').config();
+var env = require('dotenv').config();
 var express = require('express');
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -73,25 +73,24 @@ router.post('/signin', (req, res) => {
 });
 
 router.route('/movies')
-    .get(authController.isAuthenticated, (req, res) => {
+    .get((req, res) => {
         console.log(req.body);
-        res = res.status(200);
-        res.body.message = "GET movies";
+        res.json({ status: 200, message: "GET movies", headers: req.headers, query: req.message, env: env.UNIQUE_KEY})
     })
-    .post(authController.isAuthenticated, (req, res) => {
+    .post((req, res) => {
         console.log(req.body);
-        res = res.status(200);
-        res.body.message = "movie saved";
+        res.json({ status: 200, message: "movie saved", headers: req.headers, query: req.message, env: env.UNIQUE_KEY})
     })
     .delete(authController.isAuthenticated, (req, res) => {
         console.log(req.body);
-        res = res.status(200);
-        res.body.message = "movie deleted";
+        res.json({ status: 200, message: "movie deleted", headers: req.headers, query: req.message, env: env.UNIQUE_KEY})
     })
-    .put(authController.isAuthenticated, (req, res) => {
+    .put(authJwtController.isAuthenticated, (req, res) => {
         console.log(req.body);
-        res = res.status(200);
-        res.body.message = "movie updated";
+        res.json({ status: 200, message: "movie updated", headers: req.headers, query: req.message, env: env.UNIQUE_KEY})
+    })
+    .all((req, res) => {
+        res.status(405).send({ message: 'HTTP method not supported.' });
     })
 
 router.route('/testcollection')
