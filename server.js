@@ -72,6 +72,28 @@ router.post('/signin', (req, res) => {
     }
 });
 
+router.route('/movies')
+    .get(authController.isAuthenticated, (req, res) => {
+        console.log(req.body);
+        res = res.status(200);
+        res.body.message = "GET movies";
+    })
+    .post(authController.isAuthenticated, (req, res) => {
+        console.log(req.body);
+        res = res.status(200);
+        res.body.message = "movie saved";
+    })
+    .delete(authController.isAuthenticated, (req, res) => {
+        console.log(req.body);
+        res = res.status(200);
+        res.body.message = "movie deleted";
+    })
+    .put(authController.isAuthenticated, (req, res) => {
+        console.log(req.body);
+        res = res.status(200);
+        res.body.message = "movie updated";
+    })
+
 router.route('/testcollection')
     .delete(authController.isAuthenticated, (req, res) => {
         console.log(req.body);
